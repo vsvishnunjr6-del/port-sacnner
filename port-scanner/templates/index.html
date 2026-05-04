@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Port Scanner</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            border: none;
+        }
+        button {
+            background: #22c55e;
+            color: white;
+            cursor: pointer;
+        }
+        .box {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>🔍 Web Port Scanner</h2>
+
+    <form method="POST">
+        <input type="text" name="target" placeholder="Enter IP / Domain" required><br>
+        <input type="number" name="start_port" placeholder="Start Port (20)">
+        <input type="number" name="end_port" placeholder="End Port (1024)"><br>
+        <button type="submit">Scan</button>
+    </form>
+
+    {% if target %}
+        <h3>Results for: {{ target }}</h3>
+
+        {% if open_ports %}
+            <p>Open Ports:</p>
+            <ul>
+                {% for port in open_ports %}
+                    <li>✅ Port {{ port }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>❌ No open ports found</p>
+        {% endif %}
+    {% endif %}
+</div>
+
+</body>
+</html>
